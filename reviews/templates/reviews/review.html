@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Review</title>
+  </head>
+  <body>
+    {% if has_error %}
+      <p>There was an error with your input.</p>
+    {% endif %}
+    <form method="POST" action="">
+      {% csrf_token %}
+      <label for="username">Your name</label>
+      <input type="text" name="username" id="username" />
+      <button>Submit</button>
+    </form>
+  </body>
+</html>
