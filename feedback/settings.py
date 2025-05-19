@@ -124,3 +124,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = BASE_DIR / "uploads"
+
+# The MEDIA_URL can be anything and Django will automatically create it and expose it to the public internet to allow users to access media.
+MEDIA_URL = "/user-media/"
