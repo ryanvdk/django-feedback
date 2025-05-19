@@ -81,11 +81,28 @@ class ReviewListView(ListView):
 #         return context
 
 
+class AddFavoriteView(View):
+    def post(self, request):
+        review_id = request.POST["review_id"]
+        request.session["favorite_review"] = review_id
+        return HttpResponseRedirect("/reviews/" + review_id)
+
+
 class ReviewDetailsView(DetailView):
     # This View type uses the primary key to identify which item to access. "reviews/<int:pk>"
     # Data is accessible in the tamplate through the model name or the "object" keyword
     template_name = "reviews/review_details.html"
     model = Review
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        loaded_review = self.object
+        request = self.request
+        # favorite_id = request.session["favorite_review"]
+        # This is a safer way to access session data because it won't through an error if the session does not exist yet
+        favorite_id = request.session.get("favorite_review")
+        context["is_favorite"] = favorite_id == str(loaded_review.id)
+        return context
 
 
 # class ReviewDetailsView(TemplateView):
