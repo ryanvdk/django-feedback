@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <h1>{{ title }}</h1>
-  {{ details }}
+  <h1>{{ review.user_name }}</h1>
+  <h2>Rating: {{ review.rating }}</h2>
+  {{ review.review_text }}
 {% endblock %}
